@@ -1,8 +1,6 @@
 
 # Multi-Agent AI Orchestration
 
-This document is available in [English](readme.en.md) and [Italian](readme.it.md) languages. 
-
 Please note that the English version was largely translated with the help of an AI.
 
 ## The most expensive way to sum a list of numbers
