@@ -378,6 +378,3 @@ This line of reasoning inevitably leads to political and social reflections that
 
 The purpose of this comment is instead an invitation to **prepare**, without wanting to exaggerate but also not to underestimate the risks, particularly aimed at those who are considering starting a career in the field of computer science to make a living - as a front-end developer, full-stack developer, back-end developer, data analyst, and so on - as the industry will be profoundly overturned by the AI revolution.
 
-## Contacts
-
-If you would like to contact me for any question or further information, you can email me at (info [at] federicocorrao [dot] it). I will be happy to answer!
