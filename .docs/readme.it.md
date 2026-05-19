@@ -1,19 +1,17 @@
 
 # Multi-Agent AI Orchestration
 
-Questo documento Ë disponibile in [inglese](readme.en.md) e in [italiano](readme.it.md).
-
 ## The most expensive way to sum a list of numbers
 
-In questo repository presento un piccolo software sviluppato nel corso del mio periodo sabbatico, durante il quale ho deciso di sperimentare con le possibilit‡ offerte dall'AI in modo pratico, costruendo un prototipo dimostrativo. 
+In questo repository presento un piccolo software sviluppato nel corso del mio periodo sabbatico, durante il quale ho deciso di sperimentare con le possibilit√† offerte dall'AI in modo pratico, costruendo un prototipo dimostrativo. 
 
 Il progetto consiste in un **modello di organizzazione basato su agenti AI che cooperano fra loro** per raggiungere un obiettivo comune, implementato in linguaggio C# .NET attraverso un prototipo funzionante.
 
-Questa architettura non Ë una novit‡ - esistono gi‡ sistemi analoghi (come [Microsoft AutoGen](https://microsoft.github.io/autogen/)) consolidati o in corso di sviluppo. Qui propongo un'implementazione semplice, *from-scratch*, dei principi fondamentali che presumibilmente andranno a costituire la prossima generazione dell'ingegneria del software. 
+Questa architettura non √® una novit√† - esistono gi√† sistemi analoghi (come [Microsoft AutoGen](https://microsoft.github.io/autogen/)) consolidati o in corso di sviluppo. Qui propongo un'implementazione semplice, *from-scratch*, dei principi fondamentali che presumibilmente andranno a costituire la prossima generazione dell'ingegneria del software. 
 
-Il modello proposto Ë un **esperimento concettuale** che potrebbe fornire un'anteprima di come saranno strutturate le aziende del futuro: gruppi di agenti AI specializzati e addestrati per compiti specifici, che comunicano fra loro in modo asincrono e che condividono informazione in modo protetto, trasformando dati ed eseguendo azioni. Riducendo notevolmente o azzerando del tutto la necessit‡ di coinvolgere esseri umani all'interno dei processi aziendali (alla fine di questo documento Ë possibile leggere un [commento personale](#comment) sull'argomento).
+Il modello proposto √® un **esperimento concettuale** che potrebbe fornire un'anteprima di come saranno strutturate le aziende del futuro: gruppi di agenti AI specializzati e addestrati per compiti specifici, che comunicano fra loro in modo asincrono e che condividono informazione in modo protetto, trasformando dati ed eseguendo azioni. Riducendo notevolmente o azzerando del tutto la necessit√† di coinvolgere esseri umani all'interno dei processi aziendali (alla fine di questo documento √® possibile leggere un [commento personale](#comment) sull'argomento).
 
-Il codice sorgente Ë liberamente consultabile e utilizzabile, pubblicato in questo repository GitHub e rilasciato sotto licenza MIT. Per approfondimenti sul tema si rimanda a [Agent-Oriented Programming](https://en.wikipedia.org/wiki/Agent-oriented_programming) e [Actor Model](https://en.wikipedia.org/wiki/Actor_model).
+Il codice sorgente √® liberamente consultabile e utilizzabile, pubblicato in questo repository GitHub e rilasciato sotto licenza MIT. Per approfondimenti sul tema si rimanda a [Agent-Oriented Programming](https://en.wikipedia.org/wiki/Agent-oriented_programming) e [Actor Model](https://en.wikipedia.org/wiki/Actor_model).
 
 
 
@@ -21,15 +19,15 @@ Il codice sorgente Ë liberamente consultabile e utilizzabile, pubblicato in ques
 
 Ispirato dai recenti sviluppi nel campo dell'intelligenza artificiale, ho provato a immaginare come funzioneranno le aziende del futuro, e come l'AI potrebbe trasformare le aziende del presente per proiettarle nel futuro.
 
-In senso astratto, ogni azienda Ë un'**organizzazione**. Ogni organizzazione Ë composta da entit‡ pi˘ o meno senzienti. Chiamiamo **agenti** queste entit‡. Le organizzazioni del futuro saranno composte da agenti di 3 tipologie: agenti umani, agenti AI e agenti *hard-coded*, in ordine di costo.
+In senso astratto, ogni azienda √® un'**organizzazione**. Ogni organizzazione √® composta da entit√† pi√π o meno senzienti. Chiamiamo **agenti** queste entit√†. Le organizzazioni del futuro saranno composte da agenti di 3 tipologie: agenti umani, agenti AI e agenti *hard-coded*, in ordine di costo.
 
 - Gli **agenti umani** (1) saranno molto intelligenti, ma costosi e inefficienti. Saranno convolti nei processi aziendali solo per compiti di supervisione, validazione e accettazione dei risultati proposti dalle AI.
-- Gli **agenti AI** (2) saranno meno intelligenti degli umani ma pi˘ competenti, flessibili e meno costosi. Saranno utilizzati per tutti quei compiti in cui un livello minimo di intelligenza Ë sufficiente per sostituire un operatore umano in modo accettabile, in base a criteri di ottimizzazione dei costi e dei risultati.
-- Gli **agenti hard-coded** (3) saranno i meno costosi e pi˘ efficienti, e assolutamente stupidi. Sono gli attuali *programmi*. Saranno utilizzati per eseguire tutti quei compiti perfettamente algoritmici per i quali non Ë necessario possedere un livello minimo di intelligenza non-meccanica.
+- Gli **agenti AI** (2) saranno meno intelligenti degli umani ma pi√π competenti, flessibili e meno costosi. Saranno utilizzati per tutti quei compiti in cui un livello minimo di intelligenza √® sufficiente per sostituire un operatore umano in modo accettabile, in base a criteri di ottimizzazione dei costi e dei risultati.
+- Gli **agenti hard-coded** (3) saranno i meno costosi e pi√π efficienti, e assolutamente stupidi. Sono gli attuali *programmi*. Saranno utilizzati per eseguire tutti quei compiti perfettamente algoritmici per i quali non √® necessario possedere un livello minimo di intelligenza non-meccanica.
 
 Nelle organizzazioni di oggi regnano gli agenti di tipo 1 e 3. 
 
-I programmi svolgono quei compiti prestabiliti e ripetitivi che necessitano di procedure esatte e input / output ben definiti. Gli umani fanno tutto il resto: la risoluzione di problemi sotto condizioni non predeterminate e incerte, la manipolazione di dati non strutturati, la cooperazione in team, la creazione di procedure e soluzioni riutilizzabili, e cosÏ via.
+I programmi svolgono quei compiti prestabiliti e ripetitivi che necessitano di procedure esatte e input / output ben definiti. Gli umani fanno tutto il resto: la risoluzione di problemi sotto condizioni non predeterminate e incerte, la manipolazione di dati non strutturati, la cooperazione in team, la creazione di procedure e soluzioni riutilizzabili, e cos√¨ via.
 
 Le organizzazioni del futuro vedranno inserirsi gli agenti di tipo 2 come figura intermedia: non troppo intelligenti, non troppo stupidi, non troppo costosi, efficienti *abbastanza*. In pratica, il lavoratore perfetto. Le AI domineranno le organizzazioni del futuro.
 
@@ -37,9 +35,9 @@ Le organizzazioni del futuro vedranno inserirsi gli agenti di tipo 2 come figura
 
 ## L'Esperimento
 
-Una delle applicazioni pratiche in cui ChatGPT ha spopolato sin da subito fra gli utenti Ë quella della simulazione di  **giochi di ruolo**.
+Una delle applicazioni pratiche in cui ChatGPT ha spopolato sin da subito fra gli utenti √® quella della simulazione di  **giochi di ruolo**.
 
-Gli si chiede di impersonare qualcuno o qualcosa e l'AI, con massima disponibilit‡ e senza cenni di protesta, imita il soggetto proposto mimandone il linguaggio e il comportamento. Con questo approccio, che trova la sua massima espressione nel cosiddetto *prompt engineering*, Ë possibile far diventare ChatGPT un professionista a nostro piacimento e nostra piena disposizione. Scrittore, traduttore, sviluppatore di software, artista o illustratore, analista finanziario o CEO di una societ‡ - non c'Ë limite al tipo di personaggio, o **ruolo**, da fargli interpretare. 
+Gli si chiede di impersonare qualcuno o qualcosa e l'AI, con massima disponibilit√† e senza cenni di protesta, imita il soggetto proposto mimandone il linguaggio e il comportamento. Con questo approccio, che trova la sua massima espressione nel cosiddetto *prompt engineering*, √® possibile far diventare ChatGPT un professionista a nostro piacimento e nostra piena disposizione. Scrittore, traduttore, sviluppatore di software, artista o illustratore, analista finanziario o CEO di una societ√† - non c'√® limite al tipo di personaggio, o **ruolo**, da fargli interpretare. 
 
 Immaginiamo di creare una nostra organizzazione composta da agenti AI che giocano, tutti insieme ma con ruoli diversi, allo stesso gioco. Diamo ad ogni agente uno **script** (un copione) da seguire, specificando le regole del gioco.
 
@@ -59,9 +57,9 @@ Immaginiamo di creare una nostra organizzazione composta da agenti AI che giocan
 
 Il testo appena mostrato contiene le **meta-regole** del gioco. Queste regole istruiscono un qualsiasi agente sul contesto di esecuzione di un generico gioco. 
 
-Specificano che la nostra organizzazione Ë composta da agenti che si scambiano messaggi in modo asincrono tramite un [sistema di code](https://en.wikipedia.org/wiki/Message_queue). Specificano inoltre che ogni agente impersona un ruolo specifico, e che la comunicazione fra agenti Ë mediata da un **orchestrator** - un sistema di runtime che smista i messaggi e supervisiona l'accesso alle risorse in modo simile a quanto farebbe un sistema operativo.
+Specificano che la nostra organizzazione √® composta da agenti che si scambiano messaggi in modo asincrono tramite un [sistema di code](https://en.wikipedia.org/wiki/Message_queue). Specificano inoltre che ogni agente impersona un ruolo specifico, e che la comunicazione fra agenti √® mediata da un **orchestrator** - un sistema di runtime che smista i messaggi e supervisiona l'accesso alle risorse in modo simile a quanto farebbe un sistema operativo.
 
-Entriamo adesso nel vivo dell'esperimento. Supponiamo che l'obiettivo della nostra organizzazione sia di sommare liste di numeri ricevute in input dall'utente, estendendo il nostro script con regole pi˘ concrete.
+Entriamo adesso nel vivo dell'esperimento. Supponiamo che l'obiettivo della nostra organizzazione sia di sommare liste di numeri ricevute in input dall'utente, estendendo il nostro script con regole pi√π concrete.
 
     Our game is called "The most expensive way to sum a list of numbers".
     Here are the game rules:
@@ -80,35 +78,35 @@ Entriamo adesso nel vivo dell'esperimento. Supponiamo che l'obiettivo della nost
     - Agent C sums the current number with the intermediate result and notifies back to Agent B when an intermediate sum is done.
     - Agent D signals the completion of the operation, showing the final result.
 
-La porzione di testo appena mostrata Ë il **prologo** del nostro script. Questa sezione specifica le regole di gioco vere e proprie: il nome dell'organizzazione, l'obiettivo da raggiungere, i ruoli da impersonare e le rispettive azioni da compiere per eseguire correttamente la propria parte. Il prologo viene condiviso a tutti gli agenti partecipanti e rappresenta una visione d'insieme delle operazioni.
+La porzione di testo appena mostrata √® il **prologo** del nostro script. Questa sezione specifica le regole di gioco vere e proprie: il nome dell'organizzazione, l'obiettivo da raggiungere, i ruoli da impersonare e le rispettive azioni da compiere per eseguire correttamente la propria parte. Il prologo viene condiviso a tutti gli agenti partecipanti e rappresenta una visione d'insieme delle operazioni.
 
-Per sommare una lista di numeri, la nostra organizzazione Ë composta da 4 ruoli. Ogni ruolo ha una funzione specifica all'interno del flusso di lavoro. Nel nostro esperimento avremo 4 agenti che impersonano 4 ruoli.
+Per sommare una lista di numeri, la nostra organizzazione √® composta da 4 ruoli. Ogni ruolo ha una funzione specifica all'interno del flusso di lavoro. Nel nostro esperimento avremo 4 agenti che impersonano 4 ruoli.
 
-Immaginiamo un ruolo come un'entit‡ associata a una coda di messaggi. Possono esistere pi˘ agenti per ogni ruolo, ma un agente possiede uno e un solo ruolo. Nel nostro ambiente, quello vagamente descritto dalle delle meta-regole, un agente Ë istanza di un ruolo e rappresenta un'unit‡ di forza-lavoro dotata di una propria memoria interna (proprio come l'istanza di una conversazione con un LLM).
+Immaginiamo un ruolo come un'entit√† associata a una coda di messaggi. Possono esistere pi√π agenti per ogni ruolo, ma un agente possiede uno e un solo ruolo. Nel nostro ambiente, quello vagamente descritto dalle delle meta-regole, un agente √® istanza di un ruolo e rappresenta un'unit√† di forza-lavoro dotata di una propria memoria interna (proprio come l'istanza di una conversazione con un LLM).
 
-Sotto un punto di vista strettamente tecnico un agente Ë assimilabile a un *thread*, un'unit‡ di elaborazione asincrona che comunica con i suoi pari leggendo e scrivendo messaggi nelle code opportune. Un ruolo specifica quindi il tipo di comportamento che tale unit‡ di lavoro deve manifestare.
+Sotto un punto di vista strettamente tecnico un agente √® assimilabile a un *thread*, un'unit√† di elaborazione asincrona che comunica con i suoi pari leggendo e scrivendo messaggi nelle code opportune. Un ruolo specifica quindi il tipo di comportamento che tale unit√† di lavoro deve manifestare.
 
-I ruoli e il **workflow** del nostro esperimento sono descritti in modo pi˘ efficace dal diagramma seguente.
+I ruoli e il **workflow** del nostro esperimento sono descritti in modo pi√π efficace dal diagramma seguente.
 
 ![Agents Workflow Diagram](workflow-diagram.jpg)
 
 Supponiamo che i nostri agenti AI non dispongano di una buona memoria a breve termine, o che comunque la loro memoria sia inaffidabile e soggetta ad errori, in modo simile a quanto avviene per gli esseri umani. 
 
-Gli agenti avranno bisogno di accedere a una memoria condivisa per memorizzare i dati delle operazioni in corso. Chiamiamo **stato** questa memoria. L'accesso allo stato sar‡ mediato dal runtime - l'orchestrator, sottoforma di macchina virtuale - che avr‡ il compito di controllare l'accesso ai dati e di fornire le primitive di comunicazione fra agenti per realizzare lo scambio di messaggi.
+Gli agenti avranno bisogno di accedere a una memoria condivisa per memorizzare i dati delle operazioni in corso. Chiamiamo **stato** questa memoria. L'accesso allo stato sar√† mediato dal runtime - l'orchestrator, sottoforma di macchina virtuale - che avr√† il compito di controllare l'accesso ai dati e di fornire le primitive di comunicazione fra agenti per realizzare lo scambio di messaggi.
 
 Vediamo il workflow cooperativo nel dettaglio:
 
-- **Ruolo A**. L'agente A riceve in input una lista di numeri da sommare. Se la lista Ë vuota, l'agente A inoltra il risultato (zero) all'agente D. Se la lista contiene un solo elemento, l'agente A inoltra quell'elemento all'agente D come risultato. Se invece la lista contiene pi˘ di un numero, l'agente A apre uno stato condiviso e lo inizializza, memorizzando la lista di numeri e il risultato intermedio (zero), quindi invoca l'agente B inviandogli un messaggio.
+- **Ruolo A**. L'agente A riceve in input una lista di numeri da sommare. Se la lista √® vuota, l'agente A inoltra il risultato (zero) all'agente D. Se la lista contiene un solo elemento, l'agente A inoltra quell'elemento all'agente D come risultato. Se invece la lista contiene pi√π di un numero, l'agente A apre uno stato condiviso e lo inizializza, memorizzando la lista di numeri e il risultato intermedio (zero), quindi invoca l'agente B inviandogli un messaggio.
 
-- **Ruolo B**. L'agente B riceve in input un messaggio da A per iniziare le operazioni di somma. Se la lista contiene almeno un numero, l'agente B rimuove l'ultimo numero dalla lista (*pop*) e lo inoltra all'agente C, aggiornando lo stato. Se invece la lista Ë vuota, l'agente B inoltra il risultato intermedio all'agente D e chiude lo stato. 
+- **Ruolo B**. L'agente B riceve in input un messaggio da A per iniziare le operazioni di somma. Se la lista contiene almeno un numero, l'agente B rimuove l'ultimo numero dalla lista (*pop*) e lo inoltra all'agente C, aggiornando lo stato. Se invece la lista √® vuota, l'agente B inoltra il risultato intermedio all'agente D e chiude lo stato. 
 
 - **Ruolo C**. L'agente C riceve in input un numero da sommare. L'agente C somma il numero appena ricevuto al risultato intermedio, aggiornando lo stato, quindi notifica il completamento dell'operazione all'agente B.
 
 - **Ruolo D**. L'agente D riceve in input il risultato finale e segnala all'utente il completamento delle operazioni.
 
-I nostri agenti accetteranno in input e restituiranno in output messaggi esclusivamente in **formato JSON**. L'input di un agente sar‡ un messaggio proveniente da un altro agente corredato dal contesto, cioË dalla memoria contenente lo stato delle operazioni. L'output di un agente non sar‡, banalmente, l'input da inoltrare al prossimo agente, ma una struttura contenente una serie di **istruzioni** che il runtime dovr‡ interpretare ed eseguire per continuare il workflow. Tali istruzioni richiamano primitive per il flusso di controllo e per la manipolazione dei dati (come avviene in qualsiasi macchina astratta).
+I nostri agenti accetteranno in input e restituiranno in output messaggi esclusivamente in **formato JSON**. L'input di un agente sar√† un messaggio proveniente da un altro agente corredato dal contesto, cio√® dalla memoria contenente lo stato delle operazioni. L'output di un agente non sar√†, banalmente, l'input da inoltrare al prossimo agente, ma una struttura contenente una serie di **istruzioni** che il runtime dovr√† interpretare ed eseguire per continuare il workflow. Tali istruzioni richiamano primitive per il flusso di controllo e per la manipolazione dei dati (come avviene in qualsiasi macchina astratta).
 
-Per svolgere correttamente il proprio compito, ogni ruolo possiede uno **script di ruolo** specifico che ne descrive in dettaglio il comportamento da seguire. Mostreremo gli script specifici per ogni ruolo nella sezione successiva. Per adesso, chiudiamo questa sezione mostrando l'**epilogo**, cioË la sezione finale del nostro script.
+Per svolgere correttamente il proprio compito, ogni ruolo possiede uno **script di ruolo** specifico che ne descrive in dettaglio il comportamento da seguire. Mostreremo gli script specifici per ogni ruolo nella sezione successiva. Per adesso, chiudiamo questa sezione mostrando l'**epilogo**, cio√® la sezione finale del nostro script.
 
 	You'll begin to receive some input messages to process. 
     Please wait for the first message. When responding to messages, you must not write anything 
@@ -248,7 +246,7 @@ Gli script appena proposti non fanno altro che realizzare, seguendo un paradigma
     Sum([1, 2, 3, 42])
 
 
-Che non Ë altro che un modo asincrono, distribuito e molto complicato per realizzare, pi˘ o meno, la seguente funzione espressa in pseudo-codice.
+Che non √® altro che un modo asincrono, distribuito e molto complicato per realizzare, pi√π o meno, la seguente funzione espressa in pseudo-codice.
 
 
     list_of_items = [1, 2, 3, 42]
@@ -276,9 +274,9 @@ Che non Ë altro che un modo asincrono, distribuito e molto complicato per realiz
 
 ## L'Implementazione
 
-Dopo aver progettato l'esperimento concettuale e aver specificato le regole del gioco sottoforma di script, ho proceduto all'implementazione concreta del prototipo. Non vale la pena di addentrarsi nei dettagli del codice sorgente che di per sÈ ha una struttura semplice e senza pretese. In questa sezione mi limito a fornire una panoramica di alto livello sulle funzionalit‡ implementate e sul processo di sviluppo.
+Dopo aver progettato l'esperimento concettuale e aver specificato le regole del gioco sottoforma di script, ho proceduto all'implementazione concreta del prototipo. Non vale la pena di addentrarsi nei dettagli del codice sorgente che di per s√© ha una struttura semplice e senza pretese. In questa sezione mi limito a fornire una panoramica di alto livello sulle funzionalit√† implementate e sul processo di sviluppo.
 
-La cartella `Architecture` all'interno della soluzione contiene le classi principali. `Agent`, `Message`, `Role` e `Script` non necessitano di ulteriori spiegazioni. Le altre classi pi˘ importanti sono:
+La cartella `Architecture` all'interno della soluzione contiene le classi principali. `Agent`, `Message`, `Role` e `Script` non necessitano di ulteriori spiegazioni. Le altre classi pi√π importanti sono:
 - `Process` che rappresenta il contesto di esecuzione di un workflow,
 - `Queue` che implementa una coda di messaggi asincrona,
 - `Reaction` che rappresenta l'output di un agente sottoforma di lista di istruzioni,
@@ -291,11 +289,11 @@ La classe `Machine` implementa, in particolare, le primitive essenziali per real
 - `pop` per rimuovere l'ultimo elemento da una lista memorizzata nello stato,
 - `forward` per inoltrare un messaggio a un agente, con relativi parametri.
 
-In una prima fase i 4 ruoli sono stati implementati in modo hard-coded, scrivendo delle procedure apposite che utilizzano la libreria `Newtonsoft.JSON` per il parsing dei messaggi. » possibile trovare queste procedure all'interno della classe `MockLambdas`.
+In una prima fase i 4 ruoli sono stati implementati in modo hard-coded, scrivendo delle procedure apposite che utilizzano la libreria `Newtonsoft.JSON` per il parsing dei messaggi. √à possibile trovare queste procedure all'interno della classe `MockLambdas`.
 
-Dopo aver verificato la correttezza dell'implementazione *mock*, i ruoli sono stati finalmente implementati tramite AI, utilizzando le API di OpenAI e la libreria `Azure.AI.OpenAI` come client. Il modello LLM utilizzato Ë `gpt-3.5-turbo` con opzione JSON-mode abilitata e parametro `temperature` lasciato al valore di default. Gli script di ogni agente sono stati passati via API in qualit‡ di *System Messages* all'interno di una conversazione.
+Dopo aver verificato la correttezza dell'implementazione *mock*, i ruoli sono stati finalmente implementati tramite AI, utilizzando le API di OpenAI e la libreria `Azure.AI.OpenAI` come client. Il modello LLM utilizzato √® `gpt-3.5-turbo` con opzione JSON-mode abilitata e parametro `temperature` lasciato al valore di default. Gli script di ogni agente sono stati passati via API in qualit√† di *System Messages* all'interno di una conversazione.
 
-» possibile trovare le porzioni di script (meta-regole, prologo, epilogo, script di ruolo) all'interno della cartella `.data` ed Ë possibile testare la soluzione avviando il programma e inviando la stringa `sum 1 2 3 42` sul terminale.
+√à possibile trovare le porzioni di script (meta-regole, prologo, epilogo, script di ruolo) all'interno della cartella `.data` ed √® possibile testare la soluzione avviando il programma e inviando la stringa `sum 1 2 3 42` sul terminale.
 
 Invito il lettore a clonare il repository e seguire l'esecuzione *step-by-step*, partendo dal file `Program.cs` per comprendere meglio la logica dietro l'implementazione proposta.
 
@@ -303,7 +301,7 @@ Invito il lettore a clonare il repository e seguire l'esecuzione *step-by-step*,
 
 ## Il Risultato
 
-L'implementazione con AI ha **funzionato** dopo qualche tentativo, senza il bisogno di grosse correzioni agli script nÈ di configurare i parametri del modello LLM sottostante - ad esempio settando una `temperature` vicina allo zero. Successivamente ho condotto altri test con valori minori di `temperature` e raffinato gli script per ottenere output pi˘ puliti sotto il punto di vista meramente sintattico, verificando ulteriormente la correttezza dell'implementazione.
+L'implementazione con AI ha **funzionato** dopo qualche tentativo, senza il bisogno di grosse correzioni agli script n√© di configurare i parametri del modello LLM sottostante - ad esempio settando una `temperature` vicina allo zero. Successivamente ho condotto altri test con valori minori di `temperature` e raffinato gli script per ottenere output pi√π puliti sotto il punto di vista meramente sintattico, verificando ulteriormente la correttezza dell'implementazione.
 
 Di seguito uno screenshot di esempio che mostra l'output prodotto dal sistema per l'input `[1, 2, 3, 42]`.
 
@@ -313,21 +311,21 @@ A fronte dei risultati ottenuti, emergono le seguenti considerazioni, alcune ban
 
 1. Gli agenti implementati tramite OpenAI danno prova di essere dei formidabili parser e produttori di codice JSON corretto,
 
-2. Gli agenti sono perfettamente in grado di comprendere i concetti di lista (vuota e non) e di ultimo elemento, nonchÈ di individuare l'ultimo elemento all'interno di una lista in formato JSON,
+2. Gli agenti sono perfettamente in grado di comprendere i concetti di lista (vuota e non) e di ultimo elemento, nonch√© di individuare l'ultimo elemento all'interno di una lista in formato JSON,
 
-3. Gli agenti sono in grado di fornire in output il risultato di semplici operazioni matematiche come somme di numeri interi di poche cifre, tralasciando in questa sede la possibilit‡ di estendere i modelli forniti da OpenAI con delle funzioni programmate,
+3. Gli agenti sono in grado di fornire in output il risultato di semplici operazioni matematiche come somme di numeri interi di poche cifre, tralasciando in questa sede la possibilit√† di estendere i modelli forniti da OpenAI con delle funzioni programmate,
 
 4. Gli agenti sono in grado di **selezionare** opportunamente un tipo di risposta in base al contesto fornito, ovvero sono in grado di svolgere semplici azioni di selezione (*if-then-else*),
 
-5. Considerando la primitiva di *forward* messa a disposizione dalla macchina virtuale implementata per questo esperimento, i nostri agenti sono in grado di effettuare computazioni **turing-complete**, posto che il LLM sottostante non effettui errori nel fornire il risultato di calcoli aritmetici, e non manifesti altri errori legati alla comprensione del testo o alla quantit‡ di memoria contestuale limitata. La primitiva di *forward* consente infatti di esprimere chiamate ricorsive fra agenti all'interno di un medesimo contesto di lavoro.
+5. Considerando la primitiva di *forward* messa a disposizione dalla macchina virtuale implementata per questo esperimento, i nostri agenti sono in grado di effettuare computazioni **turing-complete**, posto che il LLM sottostante non effettui errori nel fornire il risultato di calcoli aritmetici, e non manifesti altri errori legati alla comprensione del testo o alla quantit√† di memoria contestuale limitata. La primitiva di *forward* consente infatti di esprimere chiamate ricorsive fra agenti all'interno di un medesimo contesto di lavoro.
 
-» importante notare come, all'interno degli script di ruolo mostrati in precedenza, i nostri agenti **non** siano stati istruiti sull'insieme di istruzioni messo a disposizione dal runtime. 
+√à importante notare come, all'interno degli script di ruolo mostrati in precedenza, i nostri agenti **non** siano stati istruiti sull'insieme di istruzioni messo a disposizione dal runtime. 
 
-Non hanno mai ricevuto una specifica esatta e completa delle primitive utilizzabili. Si limitano semplicemente, per adesso, ad analizzare la forma dell'input e a rispondere con la struttura sintattica che gli sembra pi˘ adatta in base alle direttive ricevute, sostituendo opportunamente i *placeholder* che rappresentano parametri - intuendo in modo piuttosto intelligente quali sono i placeholder all'interno dei JSON mostrati nei rispettivi script ed individuando i valori corrispondenti dagli input successivi.
+Non hanno mai ricevuto una specifica esatta e completa delle primitive utilizzabili. Si limitano semplicemente, per adesso, ad analizzare la forma dell'input e a rispondere con la struttura sintattica che gli sembra pi√π adatta in base alle direttive ricevute, sostituendo opportunamente i *placeholder* che rappresentano parametri - intuendo in modo piuttosto intelligente quali sono i placeholder all'interno dei JSON mostrati nei rispettivi script ed individuando i valori corrispondenti dagli input successivi.
 
 Nel futuro potrebbe essere possibile progettare degli agenti che, data in input una specifica di *instruction set*, utilizzano autonomamente le primitive del runtime per arrivare ai risultati desiderati (v. sezione successiva, punto 5).
 
-Per le chiamate a OpenAI necessarie a completare l'esperimento in tutte le sue parti ho speso, ironicamente, **$0.02**. Posso dire a questo punto di aver dato i miei *two-cents* al settore dell'AI e di aver scoperto il modo pi˘ costoso per sommare una lista di numeri.
+Per le chiamate a OpenAI necessarie a completare l'esperimento in tutte le sue parti ho speso, ironicamente, **$0.02**. Posso dire a questo punto di aver dato i miei *two-cents* al settore dell'AI e di aver scoperto il modo pi√π costoso per sommare una lista di numeri.
 
 
 
@@ -335,51 +333,51 @@ Per le chiamate a OpenAI necessarie a completare l'esperimento in tutte le sue p
 
 Per quanto riguarda l'esperimento, penso che il processo e il materiale prodotto finora siano abbastanza stimolanti da meritare una continuazione in un progetto dedicato, open source o orientato al mercato. Per quanto riguarda il futuro del mondo del lavoro, rimando alla sezione successiva contenente un'[opinione personale](#comment). 
 
-Sintetizzo invece qui le valutazioni che mi sembrano pi˘ oggettive e le previsioni pi˘ probabili per il futuro dell'ingegneria del software.
+Sintetizzo invece qui le valutazioni che mi sembrano pi√π oggettive e le previsioni pi√π probabili per il futuro dell'ingegneria del software.
 
-1. Come questo banale esperimento dimostra, Ë gi‡ possibile creare agenti AI che collaborano tra loro per svolgere compiti pi˘ o meno complessi - in parte algoritmici, in parte intelligenti - condividendo informazione e coordinandosi per risolvere problemi.
+1. Come questo banale esperimento dimostra, √® gi√† possibile creare agenti AI che collaborano tra loro per svolgere compiti pi√π o meno complessi - in parte algoritmici, in parte intelligenti - condividendo informazione e coordinandosi per risolvere problemi.
 
-2. La complessit‡ dei workflow in cui saranno coinvolte le AI sta gi‡ aumentando. Gli agenti non si limiteranno a sommare liste di numeri ma eseguiranno operazioni complesse come leggere, scrivere e scambiarsi documenti, interrogare database aziendali, leggere file su disco, effettuare chiamate API per agire concretamente sul mondo esterno e cosÏ via.
+2. La complessit√† dei workflow in cui saranno coinvolte le AI sta gi√† aumentando. Gli agenti non si limiteranno a sommare liste di numeri ma eseguiranno operazioni complesse come leggere, scrivere e scambiarsi documenti, interrogare database aziendali, leggere file su disco, effettuare chiamate API per agire concretamente sul mondo esterno e cos√¨ via.
 
-3. Ne deriva che, in un futuro non molto distante, le AI saranno in grado non solo di lavorare su attivit‡ circostanziate (produrre un testo, tradurre un testo) ma di aggregare e analizzare **informazioni sparse** per navigare in ambienti cross-funzionali complessi e impersonare ruoli altrettanto complessi (redigere un bilancio aziendale a partire dai documenti contabili, creare e postare autonomamente contenuti sui canali social aziendali, pubblicare un job posting su LinkedIn e schedulare automaticamente una videochiamata con il candidato migliore, e cosÏ via all'infinito).
+3. Ne deriva che, in un futuro non molto distante, le AI saranno in grado non solo di lavorare su attivit√† circostanziate (produrre un testo, tradurre un testo) ma di aggregare e analizzare **informazioni sparse** per navigare in ambienti cross-funzionali complessi e impersonare ruoli altrettanto complessi (redigere un bilancio aziendale a partire dai documenti contabili, creare e postare autonomamente contenuti sui canali social aziendali, pubblicare un job posting su LinkedIn e schedulare automaticamente una videochiamata con il candidato migliore, e cos√¨ via all'infinito).
 
-4. Se un sistema informatico diventa, banalmente ed essenzialmente, una specfica testuale, realizzando il sogno ultimo dell'analisi dei requisiti di trasformare un pezzo di testo scritto in linguaggio naturale in un sistema funzionante, allora tutti i sistemi informatici saranno **auto-programmabili**. Esister‡ un agente AI specializzato nel produrre una specifica di sistema (qualcosa di simile allo script mostrato in questo esperimento) volta a simulare il funzionamento di un'organizzazione aziendale o di un suo ramo. Il futuro potrebbe essere fatto di **agenti che generano organizzazioni di agenti** per risolvere problemi di business.
+4. Se un sistema informatico diventa, banalmente ed essenzialmente, una specfica testuale, realizzando il sogno ultimo dell'analisi dei requisiti di trasformare un pezzo di testo scritto in linguaggio naturale in un sistema funzionante, allora tutti i sistemi informatici saranno **auto-programmabili**. Esister√† un agente AI specializzato nel produrre una specifica di sistema (qualcosa di simile allo script mostrato in questo esperimento) volta a simulare il funzionamento di un'organizzazione aziendale o di un suo ramo. Il futuro potrebbe essere fatto di **agenti che generano organizzazioni di agenti** per risolvere problemi di business.
 
-5. Questa visione, che potrebbe sembrare futuristica, potrebbe essere in realt‡ gi‡ superata, riduttiva. Abbiamo *supposto* infatti che gli agenti abbiano bisogno di una specifica di regole molto dettagliata, generata da un attore intelligente, per poter risolvere un problema concreto. Nulla vieta che un gruppo di agenti, opportunamente istruito con delle meta-regole abbastanza efficaci, possa essere cosÏ intelligente da essere in grado di **auto-organizzarsi**. In altre parole, data la formulazione di un problema in input, essere in grado di trovare una soluzione formale al problema, quindi di comunicare e cooperare internamente per auto-assegnarsi ruoli e compiti, senza che siano necessarie altre indicazioni ad esclusione della specifica del problema da risolvere e dell'ambiente di esecuzione - inferendo autonomamente sia la soluzione astratta e che l'implementazione concreta. Il futuro anteriore potrebbe essere fatto di **societ‡ auto-determinate di agenti**.
+5. Questa visione, che potrebbe sembrare futuristica, potrebbe essere in realt√† gi√† superata, riduttiva. Abbiamo *supposto* infatti che gli agenti abbiano bisogno di una specifica di regole molto dettagliata, generata da un attore intelligente, per poter risolvere un problema concreto. Nulla vieta che un gruppo di agenti, opportunamente istruito con delle meta-regole abbastanza efficaci, possa essere cos√¨ intelligente da essere in grado di **auto-organizzarsi**. In altre parole, data la formulazione di un problema in input, essere in grado di trovare una soluzione formale al problema, quindi di comunicare e cooperare internamente per auto-assegnarsi ruoli e compiti, senza che siano necessarie altre indicazioni ad esclusione della specifica del problema da risolvere e dell'ambiente di esecuzione - inferendo autonomamente sia la soluzione astratta e che l'implementazione concreta. Il futuro anteriore potrebbe essere fatto di **societ√† auto-determinate di agenti**.
 
-6. Ci avviamo verso un'informatica dominata dall'**AIOps** e da un paradigma tecnico-economico di **Organization-as-a-Service**. Potremo comprare organizzazioni virtuali composte da persone virtuali, generando i nostri professionisti in capacit‡ e competenze a nostro piacimento. Potremo creare comporre le nostre aziende come se fossero mattoncini di un Lego personalizzato, dinamicamente trasformabile, scalabile e supervisionato da esseri umani *in-the-middle*, con l'unico vincolo del costo economico ed energetico. Fondendo le parole *agente* e *organizzazione*, potremmo dire che il futuro prossimo sar‡ l'era dell'**agentizzazione**.
+6. Ci avviamo verso un'informatica dominata dall'**AIOps** e da un paradigma tecnico-economico di **Organization-as-a-Service**. Potremo comprare organizzazioni virtuali composte da persone virtuali, generando i nostri professionisti in capacit√† e competenze a nostro piacimento. Potremo creare comporre le nostre aziende come se fossero mattoncini di un Lego personalizzato, dinamicamente trasformabile, scalabile e supervisionato da esseri umani *in-the-middle*, con l'unico vincolo del costo economico ed energetico. Fondendo le parole *agente* e *organizzazione*, potremmo dire che il futuro prossimo sar√† l'era dell'**agentizzazione**.
 
 
 
 ## <a name="comment"></a>Il Futuro del Lavoro Intellettuale
 
-**Attenzione**. Questa sezione contiene opinioni personali senza alcuna pretesa di oggettivit‡.
+**Attenzione**. Questa sezione contiene opinioni personali senza alcuna pretesa di oggettivit√†.
 
-I sistemi di AI come ChatGPT sono stati inizialmente concepiti come *chatbot*, cioË agenti conversazionali orientati al dialogo e all'interazione con un essere umano.  Spesso vengono presentati al grande pubblico come dei *copiloti*: assistenti virtuali che aiutano l'utente a svolgere compiti pi˘ o meno complessi sotto il proprio comando.
+I sistemi di AI come ChatGPT sono stati inizialmente concepiti come *chatbot*, cio√® agenti conversazionali orientati al dialogo e all'interazione con un essere umano.  Spesso vengono presentati al grande pubblico come dei *copiloti*: assistenti virtuali che aiutano l'utente a svolgere compiti pi√π o meno complessi sotto il proprio comando.
 
-Ancora pi˘ spesso le AI vengono esaltate dagli appassionati di tecnologia con il *claim* che esse siano semplicemente degli strumenti. Non una minaccia per il lavoratore, ma solo un *tool* per velocizzare o automatizzare parte del lavoro, liberando gli operatori umani dal fardello di attivit‡ noiose e ripetitive.
+Ancora pi√π spesso le AI vengono esaltate dagli appassionati di tecnologia con il *claim* che esse siano semplicemente degli strumenti. Non una minaccia per il lavoratore, ma solo un *tool* per velocizzare o automatizzare parte del lavoro, liberando gli operatori umani dal fardello di attivit√† noiose e ripetitive.
 
-La narrazione dominante sul tema Ë chiara e quanto mai positivista. L'AI ci render‡ pi˘ efficienti e produttivi, chi riuscir‡ ad inserirla nel proprio *skillset* continuer‡ ad avere un posto nel mercato del lavoro, chi non riuscir‡ ad adeguarsi soccomber‡ (evviva il libero mercato, eccetera). 
+La narrazione dominante sul tema √® chiara e quanto mai positivista. L'AI ci render√† pi√π efficienti e produttivi, chi riuscir√† ad inserirla nel proprio *skillset* continuer√† ad avere un posto nel mercato del lavoro, chi non riuscir√† ad adeguarsi soccomber√† (evviva il libero mercato, eccetera). 
 
-Questa visione Ë in parte vera, ma ritengo che sia enormemente riduttiva e che non riesca a cogliere appieno l'impatto che l'AI avr‡ sul mondo del lavoro, in particolare nella sfera del lavoro intellettuale e dei servizi, sottostimando grandemente i rischi in favore dei benefici.
+Questa visione √® in parte vera, ma ritengo che sia enormemente riduttiva e che non riesca a cogliere appieno l'impatto che l'AI avr√† sul mondo del lavoro, in particolare nella sfera del lavoro intellettuale e dei servizi, sottostimando grandemente i rischi in favore dei benefici.
 
-Mi stupisco ogni volta quando, leggendo articoli, opinioni e commenti in rete, osservo che i fautori pi˘ entusiasti dell'AI sono proprio i lavoratori del settore tecnologico e specialmente i *developer*. Lo considero come un indicatore generale del livello di alfabetizzazione informatica, anche di chi pratica informatica per professione.
+Mi stupisco ogni volta quando, leggendo articoli, opinioni e commenti in rete, osservo che i fautori pi√π entusiasti dell'AI sono proprio i lavoratori del settore tecnologico e specialmente i *developer*. Lo considero come un indicatore generale del livello di alfabetizzazione informatica, anche di chi pratica informatica per professione.
 
-L'invenzione dell'AI generativa Ë l'inizio di una rivoluzione industriale. Con la precedente rivoluzione industriale, quella digitale, l'automazione (stupida) delle macchine ha sostituito gli operai nelle catene di montaggio delle fabbriche. 
+L'invenzione dell'AI generativa √® l'inizio di una rivoluzione industriale. Con la precedente rivoluzione industriale, quella digitale, l'automazione (stupida) delle macchine ha sostituito gli operai nelle catene di montaggio delle fabbriche. 
 
-La quarta rivoluzione industriale, quella attualmente in essere e gi‡ fondata sull'avvento del cloud e dell'internet pervasivo, vedr‡ l'automazione (questa volta meno stupida) delle macchine sostituire gli operai nelle catene di montaggio dei servizi informativi, cioË nei processi intellettuali di analisi, progettazione e decisione riguardanti tutto ciÚ che non Ë materiale. Non interesser‡ solamente il *saper fare* ma anche il *sapere* e il *conoscere*.
+La quarta rivoluzione industriale, quella attualmente in essere e gi√† fondata sull'avvento del cloud e dell'internet pervasivo, vedr√† l'automazione (questa volta meno stupida) delle macchine sostituire gli operai nelle catene di montaggio dei servizi informativi, cio√® nei processi intellettuali di analisi, progettazione e decisione riguardanti tutto ci√≤ che non √® materiale. Non interesser√† solamente il *saper fare* ma anche il *sapere* e il *conoscere*.
 
-Subiranno l'onda d'urto tutte le figure professionali che esistono solo in ragione della loro attivit‡ puramente intellettuale, non-manuale, svincolata dalla realt‡ fisica. Quindi tutti i lavoratori del digitale, della comunicazione e dell'informazione, dei servizi e della burocrazia, ma anche i professionisti della consulenza e coloro che storicamente sono stati i depositari della conoscenza e della competenza specifica: avvocati, ingegneri, manager, forse persino i medici.
+Subiranno l'onda d'urto tutte le figure professionali che esistono solo in ragione della loro attivit√† puramente intellettuale, non-manuale, svincolata dalla realt√† fisica. Quindi tutti i lavoratori del digitale, della comunicazione e dell'informazione, dei servizi e della burocrazia, ma anche i professionisti della consulenza e coloro che storicamente sono stati i depositari della conoscenza e della competenza specifica: avvocati, ingegneri, manager, forse persino i medici.
 
-Ho la sensazione che, contrariamente a quanto sostiene l'opinione diffusa sull'argomento, questo cambiamento non creer‡ pi˘ posti di lavoro di quanti ne distrugger‡, ma che invece causer‡ un bel po' di problemi a molte persone.
+Ho la sensazione che, contrariamente a quanto sostiene l'opinione diffusa sull'argomento, questo cambiamento non creer√† pi√π posti di lavoro di quanti ne distrugger√†, ma che invece causer√† un bel po' di problemi a molte persone.
 
-Il motivo Ë il seguente: la velocit‡ con la quale l'AI si insinuer‡ nei processi aziendali ed economici (una manciata di anni) non dar‡ il tempo, alla maggior parte dei lavoratori interessati, di metabolizzare il cambiamento e riconvertirsi in qualche nuova e improbabile figura professionale di cui oltretutto forse non ci sar‡ pi˘ il bisogno.
+Il motivo √® il seguente: la velocit√† con la quale l'AI si insinuer√† nei processi aziendali ed economici (una manciata di anni) non dar√† il tempo, alla maggior parte dei lavoratori interessati, di metabolizzare il cambiamento e riconvertirsi in qualche nuova e improbabile figura professionale di cui oltretutto forse non ci sar√† pi√π il bisogno.
 
 Questo filo di ragionamento conduce inevitabilmente a riflessioni di carattere politico e sociale che non sono oggetto di questo commento.
 
-Oggetto di questo commento Ë invece l'invito a **prepararsi**, senza voler esagerare ma neanche minimizzare i rischi, rivolto in particolare a chi ha in mente di iniziare una carriera nel settore dell'informatica per guadagnarsi da vivere - *front-end developer*, *full-stack developer*, *back-end developer*, *data analyst*, eccetera - che dalla rivoluzione AI ne uscir‡ stravolto. 
+Oggetto di questo commento √® invece l'invito a **prepararsi**, senza voler esagerare ma neanche minimizzare i rischi, rivolto in particolare a chi ha in mente di iniziare una carriera nel settore dell'informatica per guadagnarsi da vivere - *front-end developer*, *full-stack developer*, *back-end developer*, *data analyst*, eccetera - che dalla rivoluzione AI ne uscir√† stravolto. 
 
 
 ## Contatti
 
-Chi desiderasse contattarmi per domande o approfondimenti puÚ scrivermi una mail a (info [at] federicocorrao [dot] it). SarÚ felice di rispondere!
+Chi desiderasse contattarmi per domande o approfondimenti pu√≤ scrivermi una mail a (info [at] federicocorrao [dot] it). Sar√≤ felice di rispondere!
