@@ -377,7 +377,3 @@ Questo filo di ragionamento conduce inevitabilmente a riflessioni di carattere p
 
 Oggetto di questo commento è invece l'invito a **prepararsi**, senza voler esagerare ma neanche minimizzare i rischi, rivolto in particolare a chi ha in mente di iniziare una carriera nel settore dell'informatica per guadagnarsi da vivere - *front-end developer*, *full-stack developer*, *back-end developer*, *data analyst*, eccetera - che dalla rivoluzione AI ne uscirà stravolto. 
 
-
-## Contatti
-
-Chi desiderasse contattarmi per domande o approfondimenti può scrivermi una mail a (info [at] federicocorrao [dot] it). Sarò felice di rispondere!
